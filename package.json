@@ -16,7 +16,4 @@
     "url": "https://github.com/lite20/palmtree/issues"
   },
   "homepage": "https://github.com/lite20/palmtree#readme",
-  "dependencies": {
-    "colors": "^1.1.2"
-  }
 }
