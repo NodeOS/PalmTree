@@ -1,0 +1,22 @@
+{
+  "name": "palmtree",
+  "version": "1.0.0",
+  "description": "A service starter, monitor, and terminator. Launches programs on startup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lite20/palmtree.git"
+  },
+  "author": "lite20",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lite20/palmtree/issues"
+  },
+  "homepage": "https://github.com/lite20/palmtree#readme",
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
+}
