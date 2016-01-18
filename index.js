@@ -1,4 +1,3 @@
-require('colors');
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 console.log(tag() + "Reading startup file... (/etc/startup.json)")
@@ -30,5 +29,5 @@ fs.readFile('/etc/startup.json', 'utf8', function (err, data) {
 });
 
 function tag() {
-    return "[PalmTree]".red;
+    return "[PalmTree] ";
 }
