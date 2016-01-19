@@ -1,28 +1,23 @@
 var spawn = require('child_process').spawn;
 var fs = require('fs');
-fs.readFile('/etc/startup.json', 'utf8', function (err, data) {
-    var config;
-    if (err) { // doesn't exist
-        throw ("No startup.json file. Please create one in /etc/");
-        process.exit(1);
+var config = require('/etc/startup.json');
+var length = config.commands.length;
+for (var p = 0; p < length; p++) {
+    if (!config.commands[p].cmd) {
+        throw ("No command specified for #" + (p + 1) + " in /etc/startup.json.");
     } else {
-        config = JSON.parse(data);
+        launch(config.commands[p].cmd, config.commands[p].args); // launch the program
     }
+}
 
-    var l = config.commands.length;
-    for (var p = 0; p < l; p++) {
-        if (!config.commands[p].cmd) {
-            throw ("No command specified for #" + (p + 1) + " in /etc/startup.json.");
-        } else {
-            console.log(tag() + "Executing: " + config.commands[p].cmd + config.commands[p].args.join(" "));
-            launch(config.commands[p].cmd, config.commands[p].args); // launch the program
-        }
-    }
+function launch(cmd, args) {
+    var ls = spawn(cmd, args, {
+        stdio: 'ignore'
+    });
 
-    function launch(cmd, args) {
-        var ls = spawn(cmd, args);
-        ls.on('exit', code, function () {
-            launch(cmd, args); // re-launch silently on exit
-        });
-    }
-});
+    ls.on('exit', code, function () {
+        launch(cmd, args, {
+            stdio: 'ignore'
+        }); // re-launch silently on exit
+    });
+}
