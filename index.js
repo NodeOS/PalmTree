@@ -1,5 +1,5 @@
 var spawn = require('child_process').spawn;
-var config = require('/etc/startup.json');
+var config = require('/etc/startup.json' || process.env.path);
 for (var p in config.commands) {
     launch(config.commands[p].cmd, config.commands[p].args); // launch the program
 }
