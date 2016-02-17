@@ -13,7 +13,9 @@
   },
   "author": "lite20",
   "contributors": [
-      "Piranna"
+      {
+          "name": "Piranna"
+      }
   ],
   "license": "MIT",
   "bugs": {
