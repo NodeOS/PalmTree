@@ -1,6 +1,6 @@
 {
   "name": "palmtree",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Launch programs on startup and keep them running",
   "main": "server.js",
   "bin": "server.js",
@@ -12,6 +12,9 @@
     "url": "git+https://github.com/lite20/palmtree.git"
   },
   "author": "lite20",
+  "contributors": [
+      "Piranna"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lite20/palmtree/issues"
