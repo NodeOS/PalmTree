@@ -1,11 +1,11 @@
 {
   "name": "palmtree",
-  "version": "2.0.0",
+  "version": "2.5.0",
   "description": "Launch programs on startup and keep them running",
-  "main": "server.js",
-  "bin": "server.js",
+  "main": "palmtree.js",
+  "bin": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/test.js"
   },
   "repository": {
     "type": "git",
