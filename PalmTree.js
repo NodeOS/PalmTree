@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 var spawn = require('child_process').spawn;
 var PalmTree = function() {
     var name = require('./package.json').name;
