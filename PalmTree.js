@@ -32,7 +32,7 @@ var PalmTree = function() {
             }
 
             launch(item); // re-launch silently on exit
-        }).unref();
+        });
     };
     
     require('/etc/' + name + '.json').filter(function(item) {
