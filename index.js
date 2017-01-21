@@ -1,4 +1,8 @@
-var spawn = require('child_process').spawn
+const createWriteStream = require('fs').createWriteStream
+const dirname           = require('path').dirname
+const spawn             = require('child_process').spawn
+
+const mkdirp = require('mkdirp').sync
 
 
 const MIN_UPTIME = process.env.MIN_UPTIME || 2000
@@ -7,6 +11,26 @@ const MIN_UPTIME = process.env.MIN_UPTIME || 2000
 function filterCommand(item)
 {
   return item.enabled !== false
+}
+
+function getStdio(stdio)
+{
+  var stdout = stdio.stdout
+  var stderr = stdio.stderr
+
+  if(stdout)
+  {
+    mkdirp(dirname(stdout))
+    stdout = createWriteStream(stdout, {flags: 'a'})
+  }
+
+  if(stderr)
+  {
+    mkdirp(dirname(stderr))
+    stderr = createWriteStream(stderr, {flags: 'a'})
+  }
+
+  return ['ignore', stdout || 'ignore', stderr || stdout || 'ignore']
 }
 
 function launch(item)
@@ -20,7 +44,7 @@ function launch(item)
   const minUptime = item.minUptime || MIN_UPTIME
   const started = Date.now()
 
-  spawn(command, args, {detached: true, stdio: 'ignore'})
+  spawn(command, args, {detached: true, stdio: getStdio(item.stdio || {})})
   .on('error', logError).on('exit', function(code, signal)
   {
     // including name or command makes debugging easier
