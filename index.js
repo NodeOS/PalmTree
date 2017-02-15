@@ -2,9 +2,11 @@ const createWriteStream = require('fs').createWriteStream
 const dirname           = require('path').dirname
 const spawn             = require('child_process').spawn
 
-const mkdirp = require('mkdirp').sync
+const isDocker = require('is-docker')
+const mkdirp   = require('mkdirp').sync
 
 
+const DEFAULT_STDIO = isDocker() ? 'inherit' : 'ignore'
 const MIN_UPTIME = process.env.MIN_UPTIME || 2000
 
 
@@ -30,7 +32,11 @@ function getStdio(stdio)
     stderr = createWriteStream(stderr, {flags: 'a'})
   }
 
-  return ['ignore', stdout || 'ignore', stderr || stdout || 'ignore']
+  return [
+    DEFAULT_STDIO,
+    stdout || DEFAULT_STDIO,
+    stderr || stdout || DEFAULT_STDIO
+  ]
 }
 
 function launch(item)
