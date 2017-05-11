@@ -1,5 +1,7 @@
 # PalmTree
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/NodeOS/PalmTree.svg)](https://greenkeeper.io/)
+
 ## Status: Beta
 A lightweight service starter, and monitor to ensure programs keep running
 
